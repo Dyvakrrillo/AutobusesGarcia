@@ -2,12 +2,30 @@
 
 include('./dbPDO/BaseDatos.php');
 include ('./dbPDO/DBMySQL.php');
+include ('./Autobuses.php');
 
+/*Si vengo de dar de alta un bus*/
+if(isset($_POST["alta"])){
+    altaAutobus();
+}
 
 function conexionBD($consulta){
 	$dbLocal = new DBMySQL('localhost','root','',3306,'bus','mysql');
 	$dbLocal->setQuery($consulta);
 	return $dbLocal;
+}
+
+function altaAutobus(){
+    $nombre = $_POST["Nombre"];
+    $color = $_POST["Color"];
+    $capacidad = $_POST["Capacidad"];
+
+    $autobus = new Autobuses($nombre,$color,$capacidad);
+
+    /*$consulta = 'INSERT into "autobuses"("Nombre","Color","Capacidad")
+                  VALUES ('.$nombre.','.$color.','.$capacidad.')';
+    $db = conexionBD($consulta);*/
+
 }
 
 function verAutobuses(){
@@ -25,14 +43,34 @@ function verAutobuses(){
 	return $resultado;
 }
 
-function menu(){
-	$menu = '<li><a href="index.php" class="uno">Inicio</a></li>
-			<li><a href="alta_autobuses.php" class="dos">Alta autobuses</a></li>
-			<li><a href="ver_autobuses.php" class="tres">Ver autobuses</a></li>
-			<li><a href="alta_conductores.php" class="cuatro">Alta conductores</a></li>
-			<li><a href="ver_conductores.php" class="cinco">Ver conductores</a></li>';
+function menu($numero){
+    $class1='';$class2='';$class3='';$class4='';$class5='';
+    switch ($numero){
+        case 1:
+            $class1='active';
+            break;
+        case 2:
+            $class2='active';
+            break;
+        case 3:
+            $class3='active';
+            break;
+        case 4:
+            $class4='active';
+            break;
+        case 5:
+            $class5='active';
+            break;
+    }
+
+	$menu = '<li><a href="index.php" class="'.$class1.'">Inicio</a></li>
+			<li><a href="alta_autobuses.php" class="'.$class2.'">Alta autobuses</a></li>
+			<li><a href="ver_autobuses.php" class="'.$class3.'">Ver autobuses</a></li>
+			<li><a href="alta_conductores.php" class="'.$class4.'">Alta conductores</a></li>
+			<li><a href="ver_conductores.php" class="'.$class5.'">Ver conductores</a></li>';
 	return $menu;
 }
+
 
 
 

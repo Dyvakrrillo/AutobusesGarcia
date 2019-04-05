@@ -53,6 +53,7 @@ nav ul li{
 	border-right: 1px solid #fff;
 }
 
+
 nav ul li:last-child{
 	border-right: none;
 }
@@ -75,7 +76,7 @@ nav ul li a.active, nav ul li a:hover{
 
 
 
-section{
+section, form{
 	width: 50%;
 	max-width: 450px;
 	background: rgba(255,255,255,0.60);
@@ -143,4 +144,45 @@ article#ver_autobuses img{
 }
 /* Fin Ver autobuses*/
 
+/* Alta autobuses */
+article#autobus{
+    position: absolute;
+    width: 350px;
+    bottom: 20px;
+}
 
+article#autobus img{
+    width: 100%;
+}
+
+form label, form input{
+    width: 100%;
+    font-size: 1em;
+}
+
+form label{
+    color: rgba(10,75,182,1.00);
+}
+
+form input{
+    padding: 0.5em 1em;
+    box-sizing: border-box;
+    margin: 10px 0 20px 0px;
+    color: #585858;
+}
+
+form input[type=submit]{
+    width: 30%;
+    height: 40px;
+    font-size: 1em;
+    border: none;
+    background: #585858;
+    color: #fff;
+    float: right;
+    text-align: center;
+}
+
+.clearfix{
+    clear: both;
+}
+/* Fin Alta autobuses */
