@@ -26,11 +26,11 @@ function verAutobuses(){
 }
 
 function menu(){
-	$menu = '<li><a href="index.php">Inicio</a></li>
-			<li><a href="alta_autobuses.php">Alta autobuses</a></li>
-			<li><a href="ver_autobuses.php">Ver autobuses</a></li>
-			<li><a href="alta_conductores.php">Alta conductores</a></li>
-			<li><a href="ver_conductores.php">Ver conductores</a></li>';
+	$menu = '<li><a href="index.php" class="uno">Inicio</a></li>
+			<li><a href="alta_autobuses.php" class="dos">Alta autobuses</a></li>
+			<li><a href="ver_autobuses.php" class="tres">Ver autobuses</a></li>
+			<li><a href="alta_conductores.php" class="cuatro">Alta conductores</a></li>
+			<li><a href="ver_conductores.php" class="cinco">Ver conductores</a></li>';
 	return $menu;
 }
 
