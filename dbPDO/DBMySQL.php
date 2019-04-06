@@ -26,15 +26,15 @@ class DBMySQL extends BaseDatos{
 
 	public function queryToArray(){
         return $this->reponse->fetch();
-	}
+}
 
 	public function verConfiguracion(){
 		parent::verConfiguracion();
 	}
 
 	public function consulta($consulta){
-		
-		$this->conexion('localhost','root','bus',3306);
+
+		$this->conexion($this->server,$this->user,$this->db,$this->port);
 		$this->setQuery($consulta);
 	}
 
