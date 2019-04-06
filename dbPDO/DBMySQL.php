@@ -25,11 +25,7 @@ class DBMySQL extends BaseDatos{
 	}
 
 	public function queryToArray(){
-		return $donnees = $this->reponse->fetch();
-	}
-
-	public function __destruct(){
-		$this->reponse->closeCursor();
+        return $this->reponse->fetch();
 	}
 
 	public function verConfiguracion(){
@@ -41,6 +37,11 @@ class DBMySQL extends BaseDatos{
 		$this->conexion('localhost','root','bus',3306);
 		$this->setQuery($consulta);
 	}
+
+    public function __destruct(){
+        $this->reponse->closeCursor();
+    }
+
 }
 
 ?>

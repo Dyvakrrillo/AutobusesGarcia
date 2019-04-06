@@ -74,4 +74,10 @@ class Autobuses
         $resultado .="</br>";
         $resultado .= "Capacidad: ".$this->capacidad;
     }
+
+    public function darDeAlta(){
+        $consulta = 'INSERT into autobuses(Nombre,Color,Capacidad)
+                  VALUES ("'.$this->nombre.'","'.$this->color.'","'.$this->capacidad.'")';
+        return $consulta;
+    }
 }
