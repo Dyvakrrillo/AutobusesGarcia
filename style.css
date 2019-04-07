@@ -223,3 +223,10 @@ input.boton_editar{
 	float: left !important;
 	margin-left: 180px;
 }
+
+div.required{
+	color: darkred;
+	font-family: cursive;
+	width: 70%;
+	float: right !important;
+}

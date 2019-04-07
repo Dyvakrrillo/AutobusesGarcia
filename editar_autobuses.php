@@ -31,6 +31,7 @@
 </nav>
 
 <form method="post" action="funciones.php">
+    <input type="hidden" name="id" value="<?php echo $id?>">
     <label for="Nombre">Nombre</label>
     <input type="text" name="Nombre" id="Nombre" value="<?php echo $resultado[0]?>">
 

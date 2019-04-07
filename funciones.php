@@ -3,10 +3,13 @@
 include('./dbPDO/BaseDatos.php');
 include ('./dbPDO/DBMySQL.php');
 include ('./Autobuses.php');
+require('./dbPDO/Validation.php');
+
 
 /*Si vengo de dar de alta un bus*/
 if(isset($_POST["alta"])){
-    altaAutobus();
+    validaAltaAutobus();
+//    altaAutobus();
 }
 
 /*Si vengo de editar un bus*/
@@ -53,10 +56,50 @@ function conexionBD($consulta){
 	return $dbLocal;
 }
 
-function altaAutobus(){
-    $nombre = $_POST["Nombre"];
-    $color = $_POST["Color"];
-    $capacidad = $_POST["Capacidad"];
+function validaAltaAutobus(){
+
+    $validacion = new Validation();
+
+    // Error de nombre
+        $nombre = $_POST['Nombre'];
+        $error_nombre = $validacion->ValidaTexto($nombre, false, false, true, 'Nombre requerido');
+
+
+    // Error de color
+        $color = $_POST['Color'];
+        $error_color = $validacion->ValidaTexto($color, false, false, true, 'Color requerido');
+
+
+    // Error de capacidad
+        $capacidad = $_POST['Capacidad'];
+        $error_capacidad = $validacion->ValidaTexto($capacidad, false, false, true, 'Color requerido');
+
+    $res='';
+
+    if($error_nombre==1 && $error_color==1 && $error_capacidad==1 ){
+        altaAutobus($nombre,$color,$capacidad);
+    }
+
+    if ($error_nombre==1){
+        $res.='0';
+    }else{
+        $res.='1';
+    }
+    if ($error_color==1){
+        $res.='0';
+    }else{
+        $res.='1';
+    }
+    if ($error_capacidad==1){
+        $res.='0';
+    }else{
+        $res.='1';
+    }
+    header('Location:alta_autobuses.php?error='.$res);
+
+}
+
+function altaAutobus($nombre,$color,$capacidad){
     $autobus = new Autobuses($nombre,$color,$capacidad);
     $consulta = $autobus->darDeAlta();
     conexionBD($consulta);
@@ -93,21 +136,30 @@ function cargarAutobusEditar($id){
     return $resultado;
 }
 
-/*
+
 function editarAutobus(){
-    $nombre = $_POST["Nombre"];
-    $color = $_POST["Color"];
-    $capacidad = $_POST["Capacidad"];
+    $id = htmlentities($_POST['id']);
+    $nombre = htmlentities($_POST["Nombre"]);
+    $color = htmlentities($_POST["Color"]);
+    $capacidad = htmlentities($_POST["Capacidad"]);
 
     $consulta = "UPDATE autobuses 
-                 SET Nombre=$nombre,Color=$color,Capacidad=$capacidad
-                 WHERE ID=1";
+                 SET Nombre='$nombre',Color='$color',Capacidad='$capacidad'
+                 WHERE ID='$id'";
 
-    $autobus = new Autobuses($nombre,$color,$capacidad);
-    $consulta = $autobus->darDeAlta();
     conexionBD($consulta);
     header('Location:ver_autobuses.php');
 }
-*/
+
+function borrarAutobus(){
+    $id = htmlentities($_GET['borrar']);
+    $consulta = "DELETE FROM autobuses 
+                 WHERE ID='$id'";
+
+    conexionBD($consulta);
+    header('Location:ver_autobuses.php');
+
+}
+
 
 ?>
