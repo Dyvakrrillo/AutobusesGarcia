@@ -46,15 +46,15 @@ if(isset($error_capacidad) && $error_capacidad==1){
 
 <form method="post" action="funciones.php">
     <label for="Nombre">Nombre </label><div class="required"><?php echo $error_nombre?></div>
-    <input type="text" name="Nombre" id="Nombre">
+    <input type="text" name="Nombre" id="Nombre" required>
 
 
     <label for="Color">Color </label><div class="required"><?php echo $error_color?></div>
-    <input type="text" name="Color" id="Color">
+    <input type="text" name="Color" id="Color" required>
 
 
     <label for="Capacidad">Capacidad </label><div class="required"><?php echo $error_capacidad?></div>
-    <input type="text" name="Capacidad" id="Capacidad">
+    <input type="text" name="Capacidad" id="Capacidad" required>
 
 
     <input type="submit" value="Dar de alta" name="alta">

@@ -8,8 +8,8 @@ require('./dbPDO/Validation.php');
 
 /*Si vengo de dar de alta un bus*/
 if(isset($_POST["alta"])){
-    validaAltaAutobus();
-//    altaAutobus();
+//    validaAltaAutobus();
+    altaAutobus();
 }
 
 /*Si vengo de editar un bus*/
@@ -74,12 +74,12 @@ function validaAltaAutobus(){
         $capacidad = $_POST['Capacidad'];
         $error_capacidad = $validacion->ValidaTexto($capacidad, false, false, true, 'Color requerido');
 
-    $res='';
+    //$res='';
 
     if($error_nombre==1 && $error_color==1 && $error_capacidad==1 ){
         altaAutobus($nombre,$color,$capacidad);
     }
-
+/*
     if ($error_nombre==1){
         $res.='0';
     }else{
@@ -96,10 +96,13 @@ function validaAltaAutobus(){
         $res.='1';
     }
     header('Location:alta_autobuses.php?error='.$res);
-
+*/
 }
 
-function altaAutobus($nombre,$color,$capacidad){
+function altaAutobus(){
+    $nombre = $_POST['Nombre'];
+    $color = $_POST['Color'];
+    $capacidad = $_POST['Capacidad'];
     $autobus = new Autobuses($nombre,$color,$capacidad);
     $consulta = $autobus->darDeAlta();
     conexionBD($consulta);
